@@ -27,13 +27,14 @@ void DOC::menu(){
     int choice;
     string mail,pass;
 
+    cout<<endl;
     cout<<"_____________________________"<<endl;
     cout<<"|      DOC on the GO        |"<<endl;
     cout<<"|___________________________|"<<endl;
 
-    cout<<"1. Use as admin"<<endl;
-    cout<<"2. Use as a patient"<<endl;
-    cout<<"3. Exit"<<endl;
+    cout<<"1. Use as Admin."<<endl;
+    cout<<"2. Use as a Patient."<<endl;
+    cout<<"3. Exit."<<endl;
     cout<<"Please select one:"<<endl;
     cin>>choice;
 
@@ -41,6 +42,7 @@ void DOC::menu(){
 
         case 1:
 
+            cout<<endl;
             cout<<"_______Please Login______"<<endl;
             cout<<"Enter Email:"<<endl;
             cin>>mail;
@@ -80,28 +82,34 @@ void DOC::admin(){
     A:
     int choice;
 
+    cout<<endl;
     cout<<"---------Admin Panel-------"<<endl;
-    cout<<"1. Add Doctor."<<endl;
-    cout<<"2. Modify Database."<<endl;
-    cout<<"3. Remove Doctor from Database."<<endl;
-    cout<<"4. Back to menu."<<endl;
+    cout<<"1. Visit Database."<<endl;
+    cout<<"2. Add Doctor to Database."<<endl;
+    cout<<"3. Modify Database."<<endl;
+    cout<<"4. Remove Doctor from Database."<<endl;
+    cout<<"5. Back to Menu."<<endl;
     cout<<"Please select one:"<<endl;
     cin>>choice;
 
     switch(choice){
         case 1:
-            add();
+            list();
         break;
 
         case 2:
-            edit();
+            add();
         break;
 
         case 3:
-            rem();
+            edit();
         break;
 
         case 4:
+            rem();
+        break;
+
+        case 5:
             menu();
         break;
 
@@ -120,10 +128,11 @@ void DOC::patient(){
     A:
     int choice;
 
+    cout<<endl;
     cout<<"---------Welcome-------"<<endl;
-    cout<<"1. Make an appointment"<<endl;
-    cout<<"2. Back to main menu"<<endl;
-    cout<<"3. Exit"<<endl;
+    cout<<"1. Make an Appointment."<<endl;
+    cout<<"2. Back to Main Menu."<<endl;
+    cout<<"3. Exit."<<endl;
     cout<<"Please select one:"<<endl;
     cin>>choice;
 
@@ -157,6 +166,7 @@ void DOC::add(){
     float f;
     string fname, lname, dep, hr;
 
+    cout<<endl;
     cout<<"---------Add Doctor to Database-------"<<endl;
     cout<<"Enter doctor's code:"<<endl;
     cin>>dcode;
@@ -164,7 +174,7 @@ void DOC::add(){
     cin>>dfname;
     cout<<"Enter last name:"<<endl;
     cin>>dlname;
-    cout<<"Enter Department:"<<endl;
+    cout<<"Enter department (Gynaecology, Cardiology etc.):"<<endl;
     cin>>dept;
     cout<<"Enter fees per visit:"<<endl;
     cin>>fee;
@@ -197,7 +207,7 @@ void DOC::add(){
         data.close();
 
         if(flag==1){
-            cout<<"Duplicate doctor code detected !!!"<<endl;
+            cout<<"Duplicate Doctor Code Detected !!!"<<endl;
             goto A;
         }
         else{
@@ -209,7 +219,7 @@ void DOC::add(){
         }
     }
 
-    cout<<"Database Updated Successfully"<<endl;
+    cout<<"Database Updated Successfully."<<endl;
 }
 /*----------------------------------------------------------*/
 
@@ -222,8 +232,10 @@ void DOC::edit(){
     float f;
     string fname, lname, dep, hr;
 
+    cout<<endl;
     cout<<"---------Modify Database-------"<<endl;
-    cout<<"Enter doctor's code:"<<endl;
+    list();
+    cout<<"Enter doctor code:"<<endl;
     cin>>key;
 
     fstream data,newdata;
@@ -243,13 +255,15 @@ void DOC::edit(){
         while(!data.eof()){
 
             if(key==dcode){
-                cout<<"Enter new doctor's code:"<<endl;
+
+                cout<<endl;
+                cout<<"Enter new doctor code:"<<endl;
                 cin>>code;
                 cout<<"Enter first name:"<<endl;
                 cin>>fname;
                 cout<<"Enter last name:"<<endl;
                 cin>>lname;
-                cout<<"Enter Department:"<<endl;
+                cout<<"Enter department:"<<endl;
                 cin>>dep;
                 cout<<"Enter fees per visit:"<<endl;
                 cin>>f;
@@ -276,7 +290,7 @@ void DOC::edit(){
 
         if(flag==0){
             cout<<"Record not found !!!"<<endl;
-        }      
+        }
     }
 }
 /*----------------------------------------------------------*/
@@ -288,8 +302,10 @@ void DOC::rem(){
 
     int key,flag=0;
 
-    cout<<"---------Remove from Database-------"<<endl;
-    cout<<"Enter doctor's code:"<<endl;
+    cout<<endl;
+    cout<<"---------Remove Record from Database-------"<<endl;
+    list();
+    cout<<"Enter doctor code:"<<endl;
     cin>>key;
 
     fstream data,newdata;
@@ -310,7 +326,7 @@ void DOC::rem(){
 
             if(key==dcode){
 
-                cout<<"Removed Successfully"<<endl;
+                cout<<"Removed Successfully!!!"<<endl;
 
                 flag++;
             }
@@ -328,7 +344,7 @@ void DOC::rem(){
 
         if(flag==0){
             cout<<"Record not found !!!"<<endl;
-        }      
+        }
     }
 }
 /*----------------------------------------------------------*/
@@ -342,12 +358,12 @@ void DOC::list(){
 
     data.open("docinfo.txt", ios::in);
 
-    cout<<"Code\t\t\t\tName\t\t\t\tDepartment\t\tFees\t\tVisiting Hour"<<endl;
+    //cout<<"Code\t\t\t\tName\t\t\t\tDepartment\t\tFees\t\tVisiting Hour"<<endl;
 
     data>>dcode>>dfname>>dlname>>dept>>fee>>hour;
     while(!data.eof()){
 
-        cout<<dcode<<"\t\t"<<dfname<<"\t\t"<<dlname<<"\t\t"<<dept<<"\t\t"<<fee<<"\t\t"<<hour<<endl;
+        cout<<"Code: "<<dcode<<"\t\t"<<"Name: "<<dfname<<" "<<dlname<<"\t\t"<<"Department: "<<dept<<"\t\t"<<"Fees: "<<fee<<"\t\t"<<"Visiting Hour: "<<hour<<endl;
         data>>dcode>>dfname>>dlname>>dept>>fee>>hour;
 
     }
@@ -367,9 +383,10 @@ void DOC::finddoc(){
     string fname,lname,phone;
     int flag=0;
 
+    cout<<endl;
     cout<<"---------Make Appointment----------"<<endl;
     list();
-    cout<<"Enter doctors' code:"<<endl;
+    cout<<"Enter doctor code:"<<endl;
     cin>>key;
 
     fstream data,pdata;
@@ -382,6 +399,8 @@ void DOC::finddoc(){
         data>>dcode>>dfname>>dlname>>dept>>fee>>hour;
         while(!data.eof()){
             if(key==dcode){
+
+                cout<<endl;
                 cout<<"Enter your first name: "<<endl;
                 cin>>fname;
                 cout<<"Enter your last name:"<<endl;
@@ -389,6 +408,7 @@ void DOC::finddoc(){
                 cout<<"Enter Phone number:"<<endl;
                 cin>>phone;
 
+                cout<<endl;
                 cout<<"Name: "<<fname<<" "<<lname<<endl;
                 cout<<"Phone: "<<phone<<endl;
                 cout<<"Code: "<<dcode<<endl;
@@ -424,6 +444,8 @@ void DOC::finddoc(){
             menu();
         }
     }
+
+    pdata.close();
 
 }
 /*----------------------------------------------------------*/
