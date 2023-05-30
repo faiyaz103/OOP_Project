@@ -232,12 +232,6 @@ void DOC::edit(){
     float f;
     string fname, lname, dep, hr;
 
-    cout<<endl;
-    cout<<"---------Modify Database-------"<<endl;
-    list();
-    cout<<"Enter doctor code:"<<endl;
-    cin>>key;
-
     fstream data,newdata;
 
     data.open("docinfo.txt", ios::in);
@@ -247,6 +241,12 @@ void DOC::edit(){
         cout<<"Database doesn't exist !!!"<<endl;
     }
     else{
+
+        cout<<endl;
+        cout<<"---------Modify Database-------"<<endl;
+        list();
+        cout<<"Enter doctor code:"<<endl;
+        cin>>key;
 
         newdata.open("docinfo2.txt", ios::out|ios::app);
 
@@ -301,13 +301,6 @@ void DOC::edit(){
 void DOC::rem(){
 
     int key,flag=0;
-
-    cout<<endl;
-    cout<<"---------Remove Record from Database-------"<<endl;
-    list();
-    cout<<"Enter doctor code:"<<endl;
-    cin>>key;
-
     fstream data,newdata;
 
     data.open("docinfo.txt", ios::in);
@@ -317,6 +310,12 @@ void DOC::rem(){
         cout<<"Database doesn't exist !!!"<<endl;
     }
     else{
+
+        cout<<endl;
+        cout<<"---------Remove Record from Database-------"<<endl;
+        list();
+        cout<<"Enter doctor code:"<<endl;
+        cin>>key;
 
         newdata.open("docinfo2.txt", ios::out|ios::app);
 
@@ -358,17 +357,21 @@ void DOC::list(){
 
     data.open("docinfo.txt", ios::in);
 
-    //cout<<"Code\t\t\t\tName\t\t\t\tDepartment\t\tFees\t\tVisiting Hour"<<endl;
+    if(!data){
 
-    data>>dcode>>dfname>>dlname>>dept>>fee>>hour;
-    while(!data.eof()){
-
-        cout<<"Code: "<<dcode<<"\t\t"<<"Name: "<<dfname<<" "<<dlname<<"\t\t"<<"Department: "<<dept<<"\t\t"<<"Fees: "<<fee<<"\t\t"<<"Visiting Hour: "<<hour<<endl;
-        data>>dcode>>dfname>>dlname>>dept>>fee>>hour;
-
+        cout<<"Database doesn't exist !!!"<<endl;
     }
+    else{
+        data>>dcode>>dfname>>dlname>>dept>>fee>>hour;
+        while(!data.eof()){
 
-    data.close();
+            cout<<"Code: "<<dcode<<"\t\t"<<"Name: "<<dfname<<" "<<dlname<<"\t\t"<<"Department: "<<dept<<"\t\t"<<"Fees: "<<fee<<"\t\t"<<"Visiting Hour: "<<hour<<endl;
+            data>>dcode>>dfname>>dlname>>dept>>fee>>hour;
+
+        }
+
+        data.close();
+    }
 
 }
 /*----------------------------------------------------------*/
@@ -383,12 +386,6 @@ void DOC::finddoc(){
     string fname,lname,phone;
     int flag=0;
 
-    cout<<endl;
-    cout<<"---------Make Appointment----------"<<endl;
-    list();
-    cout<<"Enter doctor code:"<<endl;
-    cin>>key;
-
     fstream data,pdata;
     data.open("docinfo.txt",ios::in);
 
@@ -396,6 +393,13 @@ void DOC::finddoc(){
         cout<<"Database is empty."<<endl;
     }
     else{
+
+        cout<<endl;
+        cout<<"---------Make Appointment----------"<<endl;
+        list();
+        cout<<"Enter doctor code:"<<endl;
+        cin>>key;
+
         data>>dcode>>dfname>>dlname>>dept>>fee>>hour;
         while(!data.eof()){
             if(key==dcode){
@@ -428,24 +432,24 @@ void DOC::finddoc(){
             }
             data>>dcode>>dfname>>dlname>>dept>>fee>>hour;
         }
-    }
 
-    int choice;
-    if(flag==0){
-        cout<<"Try to enter correct doctor code"<<endl;
-        cout<<"Press 1 to continue"<<endl;
-        cout<<"Press 2 to return to main menu"<<endl;
-        cin>>choice;
+        int choice;
+        if(flag==0){
+            cout<<"Try to enter correct doctor code"<<endl;
+            cout<<"Press 1 to continue"<<endl;
+            cout<<"Press 2 to return to main menu"<<endl;
+            cin>>choice;
 
-        if(choice==1){
-            goto A;
+            if(choice==1){
+                goto A;
+            }
+            else{
+                menu();
+            }
         }
-        else{
-            menu();
-        }
-    }
 
-    pdata.close();
+        pdata.close();
+    }
 
 }
 /*----------------------------------------------------------*/
