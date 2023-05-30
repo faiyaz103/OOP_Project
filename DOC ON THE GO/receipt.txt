@@ -1,0 +1,5 @@
+Name: Saul Goodman
+Phone: 01234567891
+Code: 1005
+Time: 5.00pm-7.00pm
+Fees: 1000
