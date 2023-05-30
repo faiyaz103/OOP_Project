@@ -32,4 +32,4 @@ To use this program, follow these steps:
 
 ## Contact
 
-For any inquiries or issues, please contact the project maintainer at [email@example.com](mailto:faiyazmahmud2002@gmail.com).
+For any inquiries or issues, please contact the project maintainer at [faiyazmahmud2002@gmail.com](mailto:faiyazmahmud2002@gmail.com).
