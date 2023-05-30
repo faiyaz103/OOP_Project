@@ -1,2 +1,5 @@
 # OOP_Project
-This repository contains projects using Object Oriented Programming Language (C++)
+
+#DOC ON THE GO
+#Description
+DOC ON THE GO is a project under the course Object Oriented Programming Laboratory (CSE 2102) associated with Khulna University of Engineering & Technology.
