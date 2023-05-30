@@ -1,6 +1,6 @@
 # DOC on the GO
 
-This repository contains the source code for the "DOC on the GO" project. This project is made under the course Object Oriented Programming Laboratory (CSE 2102) associated with Khulna University of Engineering & Technology. It is a program that allows users to manage doctor appointments and doctor database information. The program provides functionality for both administrators and patients.
+This repository contains the source code and associated files for the "DOC on the GO" project. This project is made under the course Object Oriented Programming Laboratory (CSE 2102) associated with Khulna University of Engineering & Technology. It is a program that allows users to manage doctor appointments and doctor database information. The program provides functionality for both administrators and patients.
 
 ## Features
 
